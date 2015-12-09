@@ -1,6 +1,7 @@
 import serial
- ser = serial.Serial("/dev/cu.usbmodem1411",9600)
- print(ser.name)
+import time
+ser = serial.Serial("/dev/cu.usbmodem1411",9600)
+print(ser.name)
 
 STATE = 0;
 
@@ -17,18 +18,31 @@ while(True):
         print(command)
         if(command == "Go left"):
             print("OUPS! Baseball bat in your face")
-            ser.write(MELODY2[])
+            command = "2" + "\n"
+            ser.write(command.encode())
+            time.sleep(3)
+            command = "0" + "\n"
+            ser.write(command.encode())
+
             STATE = 0
         elif(command == "Go right"):
             print("You are safe now")
 
-            ser.write(MELODY[])
+            command = "1" + "\n"
+            ser.write(command.encode())
+            time.sleep(3)
+            command = "0" + "\n"
+            ser.write(command.encode())
 
             STATE = 2
 
         elif(command =="Sleep in the station"):
             print("somebody killed you in your sleep")
-            ser.write(MELODY2[])                      #D Db C B
+            command = "2" + "\n"
+            ser.write(command.encode())
+            time.sleep(3)
+            command = "0" + "\n"
+            ser.write(command.encode())                     #D Db C B
             STATE = 0
 
     if(STATE == 2):
@@ -38,22 +52,39 @@ while(True):
         print(command)
         if(command == "Sleep on a bench"):
             print("You've been eaten by rats")
-            ser.write(MELODY2[])                          #D Db C B Sad trumbone
+            command = "2" + "\n"
+            ser.write(command.encode())
+            time.sleep(3)
+            command = "0" + "\n"
+            ser.write(command.encode())                          #D Db C B Sad trumbone
             STATE = 0
+
         elif(command == "Grab a taxi"):
             print("You've been stabed 48 times")
-            ser.write(MELODY2[])                          #D Db C B Sad trumbone
+            command = "2" + "\n"
+            ser.write(command.encode())
+            time.sleep(3)
+            command = "0" + "\n"
+            ser.write(command.encode())                          #D Db C B Sad trumbone
             STATE = 0
+
         elif(command == "Run"):
             print("You got home safe")
+            command = "1" + "\n"
+            ser.write(command.encode())
+            time.sleep(3)
+            command = "0" + "\n"
+            ser.write(command.encode())
 
-            ser.write(MELODY[])                        
-            
             STATE = 3
 
     if (STATE == 3):
         print("You win!! You are fucking good")
-        ser.write(MELODY3[])
+        command = "3" + "\n"
+        ser.write(command.encode())
+        time.sleep(3)
+        command = "0" + "\n"
+        ser.write(command.encode())
 
         break
 
