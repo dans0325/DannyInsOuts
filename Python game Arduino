@@ -15,13 +15,25 @@ void setup() {
 
   
 #include "pitches.h"
+int melody2[] = {
+   NOTE_D3, NOTE_DS3, NOTE_C3, NOTE_B3};
+// note durations: 4 = quarter note, 8 = eighth note, etc.:
+int noteDurations2[] = {
+  4, 4, 4, 1
+};
 //inputstring =
 // notes in the melody:
 int melody1[] = {
-   NOTE_B4, NOTE_C4, NOTE_DS4, NOTE_F4, NOTE_G4, R, NOTE_GS4,R };
+    NOTE_D1, NOTE_B0 };
 // note durations: 4 = quarter note, 8 = eighth note, etc.:
 int noteDurations[] = {
-  4, 4, 4, 4, 4, 4, 4, 4, 4 
+  4, 4,
+};
+int melody3[] = {
+   NOTE_E3, NOTE_DS3, NOTE_A3, NOTE_A3};
+// note durations: 4 = quarter note, 8 = eighth note, etc.:
+int noteDurations3[] = {
+  4, 4, 4, 1
 };
 
 
@@ -70,7 +82,25 @@ sumNumber = inputString.toInt();
     // stop the tone playing:
     noTone(12);
   }
+  if (sumNumber = 2){
+    // iterate over the notes of the melody:
+  for (int thisNote = 0; thisNote < 25; thisNote++) {
+
+    // to calculate the note duration, take one second
+    // divided by the note type.
+    //e.g. quarter note = 1000 / 4, eighth note = 1000/8, etc.
+    int noteDuration = 1000 / noteDurations[thisNote];
+    tone(12, melody3[thisNote], noteDuration);
+
+    // to distinguish the notes, set a minimum time between them.
+    // the note's duration + 30% seems to work well:
+    int pauseBetweenNotes = noteDuration * 1.30;
+    delay(pauseBetweenNotes);
+    // stop the tone playing:
+    noTone(12);
+  }
 }
+  }
   
    
 }
